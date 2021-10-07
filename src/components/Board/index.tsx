@@ -1,10 +1,11 @@
-import React from "react";
+import { MouseEvent } from "react";
 import { SquareValue } from "../../types";
 import Square from "../Square";
 import "./Board.css";
 
 interface BoardProps {
   currentBoardState: Array<SquareValue>;
+  handleClick: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 export default function Board(props: BoardProps) {
   return (
@@ -13,7 +14,12 @@ export default function Board(props: BoardProps) {
         //assigning indexes as keys is only applicable if the amount of
         //elements in the array is constant
         //otherwise it can cause performance issues
-        <Square key={index} id={index} value={squareValue} />
+        <Square
+          handleClick={props.handleClick}
+          key={index}
+          id={index}
+          value={squareValue}
+        />
       ))}
     </div>
   );

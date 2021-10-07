@@ -1,12 +1,18 @@
+import { MouseEvent } from "react";
 import { SquareValue } from "../../types";
 import "./Square.css";
 interface SquareProps {
   value: SquareValue;
   id: number;
+  handleClick: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function Square(props: SquareProps) {
-  const { value } = props;
+  const { value, id, handleClick } = props;
 
-  return <button className="square">{value} </button>;
+  return (
+    <button id={id.toString()} onClick={handleClick} className="square">
+      {value}
+    </button>
+  );
 }
