@@ -47,20 +47,21 @@ export default function useGame() {
 
     squares[parseInt(event.currentTarget.id)] = currentPlayer;
 
-    const boardState = checkBoardState(squares);
-    if (boardState === GameEndStates.WON) {
-      setIsWon(true);
-      return;
-    }
-
-    if (boardState === GameEndStates.DRAW) {
-      setIsDraw(true);
-      return;
-    }
-
     setBoardStateHistory([...previousBoardState, squares]);
     incrementMoveNumber();
-    switchPlayer();
+
+    switch (checkBoardState(squares)) {
+      case GameEndStates.WON:
+        setIsWon(true);
+        return;
+
+      case GameEndStates.DRAW:
+        setIsDraw(true);
+        return;
+
+      default:
+        switchPlayer();
+    }
   }
 
   return {
