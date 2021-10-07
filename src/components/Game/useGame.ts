@@ -3,6 +3,8 @@ import React from "react";
 export default function useGame() {
   const [currentPlayer, setCurrentPlayer] = React.useState<"x" | "o">("x");
   const [moveNumber, setMoveNumber] = React.useState(0);
+  const [isWon, setIsWon] = React.useState(false);
+  const [isDraw, setIsDraw] = React.useState(false);
 
   const incrementMoveNumber = () => {
     setMoveNumber(moveNumber + 1);
@@ -19,9 +21,12 @@ export default function useGame() {
     }
     setCurrentPlayer("x");
   };
+
   return {
     currentPlayer,
     switchPlayer,
     moveNumber,
+    isWon,
+    isDraw,
   };
 }
