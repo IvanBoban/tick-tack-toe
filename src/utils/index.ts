@@ -16,11 +16,6 @@ export default function checkBoardState(
 ) {
   let gameState = "";
 
-  if (!currentBoardState.includes(null)) {
-    gameState = GameEndStates.DRAW;
-    return gameState;
-  }
-
   //using for loop because forEach can't be stopped without throwing an error
   for (let i = 0; i <= 7; i++) {
     const [location1, location2, location3] = winningStates[i];
@@ -33,6 +28,11 @@ export default function checkBoardState(
     ) {
       return (gameState = GameEndStates.WON);
     }
+  }
+
+  if (!currentBoardState.includes(null)) {
+    gameState = GameEndStates.DRAW;
+    return gameState;
   }
 
   return gameState;
