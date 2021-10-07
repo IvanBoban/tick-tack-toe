@@ -41,6 +41,10 @@ export default function useGame() {
     }
   };
 
+  const undoLastMove = () => {
+    decrementMoveNumber();
+    switchPlayer();
+  };
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     const previousBoardState = boardStateHistory.slice(0, moveNumber + 1);
     const current = previousBoardState[moveNumber];
@@ -74,6 +78,6 @@ export default function useGame() {
     currentBoardState,
     resetGame,
     handleClick,
-    decrementMoveNumber,
+    undoLastMove,
   };
 }

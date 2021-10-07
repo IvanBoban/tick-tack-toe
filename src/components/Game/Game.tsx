@@ -13,7 +13,7 @@ export default function Game() {
     currentBoardState,
     resetGame,
     handleClick,
-    decrementMoveNumber,
+    undoLastMove,
   } = useGame();
   return (
     <div id="game">
@@ -29,7 +29,7 @@ export default function Game() {
       <UndoButton
         isDraw={isDraw}
         isWon={isWon}
-        undoLastAction={decrementMoveNumber}
+        undoLastMove={undoLastMove}
         moveNumber={moveNumber}
       />
 

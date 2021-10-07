@@ -4,13 +4,13 @@ interface UndoButtonProps {
   isWon: boolean;
   isDraw: boolean;
   moveNumber: number;
-  undoLastAction: () => void;
+  undoLastMove: () => void;
 }
 export default function UndoButton(props: UndoButtonProps) {
-  const { moveNumber, isWon, isDraw, undoLastAction } = props;
+  const { moveNumber, isWon, isDraw, undoLastMove } = props;
   if (moveNumber > 0) {
     if (!isWon && !isDraw) {
-      return <button onClick={undoLastAction}>Undo last move</button>;
+      return <button onClick={undoLastMove}>Undo last move</button>;
     }
   }
   return <div></div>;
