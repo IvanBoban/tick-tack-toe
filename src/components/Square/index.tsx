@@ -11,7 +11,12 @@ export default function Square(props: SquareProps) {
   const { value, id, handleClick } = props;
 
   return (
-    <button id={id.toString()} onClick={handleClick} className="square">
+    <button
+      id={id.toString()}
+      onClick={handleClick}
+      className="square"
+      disabled={!!value}
+    >
       {value}
     </button>
   );

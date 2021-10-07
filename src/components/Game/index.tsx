@@ -17,7 +17,12 @@ export default function Game() {
     <div id="game">
       <h3>Current player: {currentPlayer} </h3>
       <h4>Number of moves: {moveNumber}</h4>
-      <Board currentBoardState={currentBoardState} handleClick={handleClick} />
+      <fieldset disabled={isDraw || isWon}>
+        <Board
+          currentBoardState={currentBoardState}
+          handleClick={handleClick}
+        />
+      </fieldset>
       {isWon && <h2>Player {currentPlayer} won</h2>}
       {isDraw && <h2>Draw</h2>}
       {(isWon || isDraw) && <button onClick={resetGame}>Play again</button>}

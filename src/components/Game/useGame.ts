@@ -5,17 +5,13 @@ import checkBoardState from "../../utils";
 const initialBoardState = [Array(9).fill(null)];
 
 export default function useGame() {
-  const [boardState, setBoardState] =
+  const [boardStateHistory, setBoardStateHistory] =
     React.useState<Array<Array<SquareValue>>>(initialBoardState);
   const [currentPlayer, setCurrentPlayer] = React.useState<"x" | "o">("x");
   const [moveNumber, setMoveNumber] = React.useState(0);
   const [isWon, setIsWon] = React.useState(false);
-  const [isDraw, setIsDraw] = React.useState(true);
-  const currentBoardState = boardState[moveNumber];
-
-  function handleClick(event: MouseEvent<HTMLButtonElement>) {
-    console.log(event.currentTarget.id);
-  }
+  const [isDraw, setIsDraw] = React.useState(false);
+  const currentBoardState = boardStateHistory[moveNumber];
 
   const incrementMoveNumber = () => {
     setMoveNumber(moveNumber + 1);
@@ -34,7 +30,7 @@ export default function useGame() {
   };
 
   const resetGame = () => {
-    setBoardState(initialBoardState);
+    setBoardStateHistory(initialBoardState);
     setMoveNumber(0);
     if (isDraw) {
       setIsDraw(false);
@@ -44,17 +40,28 @@ export default function useGame() {
     }
   };
 
-  React.useEffect(() => {
-    if (checkBoardState(currentBoardState) === GameEndStates.WON) {
+  function handleClick(event: MouseEvent<HTMLButtonElement>) {
+    const previousBoardState = boardStateHistory.slice(0, moveNumber + 1);
+    const current = previousBoardState[moveNumber];
+    const squares = [...current];
+
+    squares[parseInt(event.currentTarget.id)] = currentPlayer;
+
+    const boardState = checkBoardState(squares);
+    if (boardState === GameEndStates.WON) {
       setIsWon(true);
       return;
     }
 
-    if (checkBoardState(currentBoardState) === GameEndStates.DRAW) {
+    if (boardState === GameEndStates.DRAW) {
       setIsDraw(true);
       return;
     }
-  }, [moveNumber, currentBoardState]);
+
+    setBoardStateHistory([...previousBoardState, squares]);
+    incrementMoveNumber();
+    switchPlayer();
+  }
 
   return {
     currentPlayer,
