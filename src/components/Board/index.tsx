@@ -13,7 +13,7 @@ export default function Board(props: BoardProps) {
         //assigning indexes as keys is only applicable if the amount of
         //elements in the array is constant
         //otherwise it can cause performance issues
-        <Square key={index} value={squareValue} />
+        <Square key={index} id={index} value={squareValue} />
       ))}
     </div>
   );
