@@ -3,4 +3,4 @@ export enum GameEndStates {
   DRAW = "DRAW",
 }
 
-export type CellValue = "x" | "y" | null;
+export type SquareValue = "x" | "y" | null;

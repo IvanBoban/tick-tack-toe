@@ -1,10 +1,11 @@
+import { SquareValue } from "../../types";
+import "./Square.css";
 interface SquareProps {
-  onClick: () => void;
-  value: string; //potentially create enum
+  value: SquareValue;
 }
 
 export default function Square(props: SquareProps) {
-  const { value, onClick } = props;
+  const { value } = props;
 
   return <button className="square">{value} </button>;
 }
