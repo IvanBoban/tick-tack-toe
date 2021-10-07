@@ -1,6 +1,6 @@
 import React, { MouseEvent } from "react";
 import { GameEndStates, SquareValue } from "../../types";
-import checkBoardState from "../../utils";
+import checkBoardState from "../../utils/checkBoardState";
 
 const initialBoardState = [Array(9).fill(null)];
 
