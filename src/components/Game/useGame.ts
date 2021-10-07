@@ -32,6 +32,7 @@ export default function useGame() {
   const resetGame = () => {
     setBoardStateHistory(initialBoardState);
     setMoveNumber(0);
+    setCurrentPlayer("x");
     if (isDraw) {
       setIsDraw(false);
     }
