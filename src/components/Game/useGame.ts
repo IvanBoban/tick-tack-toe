@@ -73,5 +73,6 @@ export default function useGame() {
     currentBoardState,
     resetGame,
     handleClick,
+    decrementMoveNumber,
   };
 }
