@@ -1,6 +1,6 @@
 import { MouseEvent } from "react";
 import { SquareValue } from "../../types";
-import Square from "../Square";
+import Square from "../Square/Sqaure";
 import "./Board.css";
 
 interface BoardProps {

@@ -1,6 +1,7 @@
 import React from "react";
-import Board from "../Board";
+import Board from "../Board/Board";
 import "./Game.css";
+import UndoButton from "./UndoButton/UndoButton";
 import useGame from "./useGame";
 
 export default function Game() {
@@ -12,6 +13,7 @@ export default function Game() {
     currentBoardState,
     resetGame,
     handleClick,
+    decrementMoveNumber,
   } = useGame();
   return (
     <div id="game">
@@ -23,6 +25,14 @@ export default function Game() {
           handleClick={handleClick}
         />
       </fieldset>
+
+      <UndoButton
+        isDraw={isDraw}
+        isWon={isWon}
+        undoLastAction={decrementMoveNumber}
+        moveNumber={moveNumber}
+      />
+
       {isWon && <h2>Player {currentPlayer} won</h2>}
       {isDraw && <h2>Draw</h2>}
       {(isWon || isDraw) && <button onClick={resetGame}>Play again</button>}
